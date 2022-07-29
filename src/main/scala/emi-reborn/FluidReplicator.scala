@@ -46,7 +46,7 @@ class EmiFluidReplicatorRecipe(val recipe: FluidReplicatorRecipe, val category: 
     val startX : Int = (getDisplayWidth() / 2).toInt - 41
     val startY : Int = (getDisplayHeight() / 2).toInt - 13 
 
-    holder.add(RebornPlugin.createEnergyDisplay(8, 8, 14, 50, energy, EntryAnimation.Downwards(5000), (x, y) => {
+    holder.add(RebornPlugin.createEnergyDisplay(8, 4, 14, 50, energy, EntryAnimation.Downwards(5000), (x, y) => {
       val list : ListBuffer[OrderedText] = ListBuffer() 
       list.addOne(Text.of("Energy").asOrderedText())
       list.addOne(TranslatableText("techreborn.jei.recipe.running.cost", "E", energy).formatted(Formatting.GRAY).asOrderedText())
@@ -55,7 +55,7 @@ class EmiFluidReplicatorRecipe(val recipe: FluidReplicatorRecipe, val category: 
     }))
     holder.add(SlotWidget(inputs(0),46, 26).output(false))
     holder.add(RebornProgressWidget(46 + 21, 30, time * 50,  GuiBuilder.ProgressDirection.RIGHT))
-    holder.add(RebornPlugin.createFluidDisplay(46 + 46,  8, 16, 50, outputs(0).getEmiStacks().get(0).asInstanceOf[FluidEmiStack], EntryAnimation.Upwards(5000)))
+    holder.add(RebornPlugin.createFluidDisplay(46 + 46,  4, 16, 50, outputs(0).getEmiStacks().get(0).asInstanceOf[FluidEmiStack], EntryAnimation.Upwards(5000)))
     holder.addText(TranslatableText("techreborn.jei.recipe.processing.time.3", DecimalFormat("###.##").format(time.toFloat / 20.0)).asOrderedText(), 24, 5, 0xFF404040, false)
 }
 

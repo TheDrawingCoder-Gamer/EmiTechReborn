@@ -48,7 +48,7 @@ class EmiFluidGeneratorRecipe(val recipe: FluidGeneratorRecipe, val category: Em
   override def getDisplayWidth(): Int = 134 
   override def getDisplayHeight(): Int = 54 
   override def addWidgets(holder: WidgetHolder): Unit = 
-    holder.add(RebornPlugin.createEnergyDisplay(108, 8, 14, 50, totalEnergy, EntryAnimation.Upwards(5000), (x, y) => {
+    holder.add(RebornPlugin.createEnergyDisplay(108, 4, 14, 50, totalEnergy, EntryAnimation.Upwards(5000), (x, y) => {
       val list : ListBuffer[OrderedText] = ListBuffer()
       list.addOne(Text.of("Energy").asOrderedText) 
       list.addOne(TranslatableText("techreborn.jei.recipe.generator.total", totalEnergy).formatted(Formatting.GRAY).asOrderedText)
@@ -56,7 +56,7 @@ class EmiFluidGeneratorRecipe(val recipe: FluidGeneratorRecipe, val category: Em
       // skip getting mod thing to prevent double 
       (for (txt <- list) yield TooltipComponent.of(txt)).asJava
     }))
-    holder.add(RebornPlugin.createFluidDisplay(16, 8, 16, 50, getInputs().get(0).asInstanceOf[FluidEmiStack], EntryAnimation.Downwards(5000)))
+    holder.add(RebornPlugin.createFluidDisplay(16, 3, 16, 50, getInputs().get(0).asInstanceOf[FluidEmiStack], EntryAnimation.Downwards(5000)))
     holder.add(RebornProgressWidget(76 - 16, 48 - 19, 5000, GuiBuilder.ProgressDirection.RIGHT))
 
 

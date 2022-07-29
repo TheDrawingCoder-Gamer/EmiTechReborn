@@ -93,7 +93,8 @@ class FluidWidget (x: Int, y:Int, val animation: EntryAnimation, protected val f
     val w = getBounds.width
     val displayPower = PowerSystem.getDisplayPower()
     RenderSystem.setShaderTexture(0, GuiBuilder.defaultTextureSheet)
-    DrawableHelper.drawTexture(matrices, x - 4, y - 4, 194, 26, w + 8, h + 8, 256, 256)
+    // these values are to prevent jank
+    DrawableHelper.drawTexture(matrices, x - 4, y - 4, 194, 26, w + 6, h + 6, 256, 256)
     DrawableHelper.drawTexture(matrices, x - 1, y - 1, 194, 82,  w + 2, h + 2, 256, 256)
     lazy val fancyHeight = MathHelper.ceil((System.currentTimeMillis() / (animation.duration / h) % h))
     val innerDisplayHeight = animation match 
