@@ -61,7 +61,7 @@ trait AbstractMachineRecipe[R <: RebornRecipe](val rebornRecipe: R, val category
 
 trait AbstractEnergyConsumingMachineRecipe[R <: RebornRecipe] extends AbstractMachineRecipe[R] {
   override def addWidgets(holder: WidgetHolder): Unit = 
-    holder.add(RebornPlugin.createEnergyDisplay(8,8,14,50, energy, EntryAnimation.Downwards(5000), (x, y) => {
+    holder.add(RebornPlugin.createEnergyDisplay(8,4,14,50, energy, EntryAnimation.Downwards(5000), (x, y) => {
       val list: ListBuffer[OrderedText] = ListBuffer()
       list.addOne(Text.of("Energy").asOrderedText)
       list.addOne(TranslatableText("techreborn.jei.recipe.running.cost", "E", energy).formatted(Formatting.GRAY).asOrderedText) 

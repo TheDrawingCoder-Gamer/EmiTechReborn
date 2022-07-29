@@ -15,14 +15,16 @@ import dev.emi.emi.api.stack.EmiStack
 import techreborn.init.TRContent.Machine
 import techreborn.init.TRContent
 import net.minecraft.recipe.RecipeType
+import net.bulbyvr.emireborn.addRightText
 
 class OneInputOneOutput[R <: RebornRecipe](recipe: R, cat: EmiRecipeCategory) extends AbstractEnergyConsumingMachineRecipe[R], AbstractMachineRecipe[R](recipe, cat) {
   override def addWidgets(holder: WidgetHolder): Unit = 
     super.addWidgets(holder)
-    holder.add(SlotWidget(getInput(0), 46, 26).output(false)) 
+    holder.add(SlotWidget(getInput(0), 46, 26))
+    // actual valid use of output(true)
     holder.add(SlotWidget(getOutput(0), 46 + 46, 26).output(true).recipeContext(this))
     holder.add(RebornProgressWidget(46 + 21, 30, time * 50, GuiBuilder.ProgressDirection.RIGHT))
-    holder.addText(TranslatableText("techreborn.jei.recipe.processing.time.3", DecimalFormat("###.##").format(time.toFloat / 20.0)).asOrderedText(), getDisplayWidth - 5, 5, 0xFF404040, false) 
+    holder.addRightText(TranslatableText("techreborn.jei.recipe.processing.time.3", DecimalFormat("###.##").format(time.toFloat / 20.0)).asOrderedText(), getDisplayWidth - 5, 5, 0xFF404040, false) 
 }
 
 object OneInputOneOutput {

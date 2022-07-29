@@ -12,7 +12,7 @@ import reborncore.client.gui.guibuilder.GuiBuilder
 import net.minecraft.text.TranslatableText
 import java.text.DecimalFormat
 import dev.emi.emi.api.EmiRegistry
-
+import net.bulbyvr.emireborn.addRightText
 object EmiElectrolyzerRecipe {
   val CATEGORY = EmiRecipeCategory(ModRecipes.INDUSTRIAL_ELECTROLYZER.name, EmiStack.of(Machine.INDUSTRIAL_ELECTROLYZER))
   def register(registry: EmiRegistry): Unit = 
@@ -24,16 +24,16 @@ object EmiElectrolyzerRecipe {
 class EmiElectrolyzerRecipe[R <: RebornRecipe](recipe: R) extends AbstractEnergyConsumingMachineRecipe[R], AbstractMachineRecipe[R](recipe, EmiElectrolyzerRecipe.CATEGORY) {
   override def getDisplayHeight(): Int = 66 
   override def addWidgets(holder: WidgetHolder): Unit = 
-    holder.add(SlotWidget(getInput(0), 55 - 20, 41).output(false))
-    holder.add(SlotWidget(getInput(1), 55, 41).output(false))
-    holder.add(SlotWidget(EmiStack.EMPTY, 55 + 17 - 9 - 20 - 5, 36 - 22 - 5).customBackground(null, 0, 0,86,26).output(true))
-    holder.add(SlotWidget(getOutput(0), 55 + 17 - 9 - 20, 36 - 22).drawBack(false).recipeContext(this).output(true))
-    holder.add(SlotWidget(getOutput(1), 55 + 17 - 9, 36 - 22).drawBack(false).recipeContext(this).output(true))
-    holder.add(SlotWidget(getOutput(2), 55 + 17 - 9 + 20, 36 - 22).drawBack(false).recipeContext(this).output(true))
-    holder.add(SlotWidget(getOutput(3), 55 + 17 - 9 + 40, 36 - 22).drawBack(false).recipeContext(this).output(true))
+    holder.add(SlotWidget(getInput(0), 55 - 20, 41))
+    holder.add(SlotWidget(getInput(1), 55, 41))
+    // holder.add(SlotWidget(EmiStack.EMPTY, 55 + 17 - 9 - 20 - 5, 36 - 22 - 5).customBackground(null, 0, 0,86,26).output(true))
+    holder.add(SlotWidget(getOutput(0), 55 + 17 - 9 - 20, 36 - 22).recipeContext(this))
+    holder.add(SlotWidget(getOutput(1), 55 + 17 - 9, 36 - 22).recipeContext(this))
+    holder.add(SlotWidget(getOutput(2), 55 + 17 - 9 + 20, 36 - 22).recipeContext(this))
+    holder.add(SlotWidget(getOutput(3), 55 + 17 - 9 + 40, 36 - 22).recipeContext(this))
     holder.add(RebornProgressWidget(55 + 21, 36 + 4, time * 50, GuiBuilder.ProgressDirection.UP))
     
-    holder.addText(TranslatableText("techreborn.jei.recipe.processing.time.3", DecimalFormat("###.##").format(time.toFloat / 20f)).asOrderedText(), getDisplayWidth() - 17, getDisplayHeight() - 13, 0xFF404040, false)
+    holder.addRightText(TranslatableText("techreborn.jei.recipe.processing.time.3", DecimalFormat("###.##").format(time.toFloat / 20f)).asOrderedText(), getDisplayWidth() - 17, getDisplayHeight() - 13, 0xFF404040, false)
 
 
 }

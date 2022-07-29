@@ -23,11 +23,14 @@ object EmiSawmillRecipe {
 class EmiSawmillRecipe[R <: RebornRecipe](recipe: R) extends AbstractEnergyConsumingMachineRecipe[R], AbstractMachineRecipe[R](recipe,EmiSawmillRecipe.CATEGORY) {
   override def addWidgets(widgets: WidgetHolder): Unit = 
     super.addWidgets(widgets)
-    widgets.add(SlotWidget(getInput(0), 55, 26).output(false))
-    widgets.add(SlotWidget(getOutput(0), 55 + 46, 26 - 18).output(true).recipeContext(this))
-    widgets.add(SlotWidget(getOutput(1), 55 + 46, 26).output(true).recipeContext(this))
-    widgets.add(SlotWidget(getOutput(2), 55 + 46, 26 + 18).output(true).recipeContext(this))
-    widgets.add(RebornProgressWidget(55 + 21, 30, time * 50, GuiBuilder.ProgressDirection.RIGHT))
-    widgets.add(RebornPlugin.createFluidDisplay(55 - 26, 8, 16, 50, getInput(1).asInstanceOf[FluidEmiStack], EntryAnimation.Downwards(5000)))
-    widgets.addText(TranslatableText("techreborn.jei.recipe.processing.time.3", DecimalFormat("###.##").format(time.toFloat / 20f)).asOrderedText(), 24, 5, 0xFF404040, false)
+    val magicY = 24
+    widgets.add(SlotWidget(getInput(0), 55, magicY))
+    widgets.add(SlotWidget(getOutput(0), 55 + 46, magicY - 18).recipeContext(this))
+    widgets.add(SlotWidget(getOutput(1), 55 + 46, magicY).recipeContext(this))
+    widgets.add(SlotWidget(getOutput(2), 55 + 46, magicY + 18).recipeContext(this))
+    widgets.add(RebornProgressWidget(55 + 21, magicY + 4, time * 50, GuiBuilder.ProgressDirection.RIGHT))
+    widgets.add(RebornPlugin.createFluidDisplay(55 - 26, 4, 16, 50, getInput(1).asInstanceOf[FluidEmiStack], EntryAnimation.Downwards(5000)))
+    widgets.addText(TranslatableText("techreborn.jei.recipe.processing.time.3", DecimalFormat("###.##").format(time.toFloat / 20f)).asOrderedText(), 51, 5, 0xFF404040, false)
+  override def getDisplayHeight(): Int = 
+    60
 }

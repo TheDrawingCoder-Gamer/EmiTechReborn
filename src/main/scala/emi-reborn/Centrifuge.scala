@@ -21,12 +21,12 @@ object EmiCentrifugeRecipe {
 }
 class EmiCentrifugeRecipe[R <: RebornRecipe](recipe:R) extends AbstractEnergyConsumingMachineRecipe[R], AbstractMachineRecipe[R](recipe, EmiCentrifugeRecipe.CATEGORY) {
   override def addWidgets(widgets: WidgetHolder): Unit = 
-    widgets.add(SlotWidget(getInput(0), 55 - 17, 35 - 19).output(false))
-    widgets.add(SlotWidget(getInput(1), 55 - 17, 55 - 19).output(false))
-    widgets.add(SlotWidget(getOutput(0), 97 - 17, 45 - 19).output(true).recipeContext(this))
-    widgets.add(SlotWidget(getOutput(1), 116 - 17, 26 - 19).output(true).recipeContext(this))
-    widgets.add(SlotWidget(getOutput(2), 135 - 17, 45 - 19).output(true).recipeContext(this))
-    widgets.add(SlotWidget(getOutput(3), 116 - 17, 64 - 19).output(true).recipeContext(this))
+    widgets.add(SlotWidget(getInput(0), 55 - 17, 35 - 19))
+    widgets.add(SlotWidget(getInput(1), 55 - 17, 55 - 19))
+    widgets.add(SlotWidget(getOutput(0), 97 - 17, 45 - 19).recipeContext(this))
+    widgets.add(SlotWidget(getOutput(1), 116 - 17, 26 - 19).recipeContext(this))
+    widgets.add(SlotWidget(getOutput(2), 135 - 17, 45 - 19).recipeContext(this))
+    widgets.add(SlotWidget(getOutput(3), 116 - 17, 64 - 19).recipeContext(this))
     widgets.add(RebornProgressWidget(76 - 17, 48 - 19, time * 50, GuiBuilder.ProgressDirection.RIGHT))
 
     widgets.addText(TranslatableText("techreborn.jei.recipe.processing.time.3", DecimalFormat("###.##").format(time.toFloat / 20f)).asOrderedText(), 24, 5, 0xFF404040, false)

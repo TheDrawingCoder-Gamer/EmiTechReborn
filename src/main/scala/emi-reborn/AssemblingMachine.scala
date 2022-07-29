@@ -13,16 +13,17 @@ import net.minecraft.text.TranslatableText
 import java.text.DecimalFormat
 import net.bulbyvr.emireborn.RebornProgressWidget
 import dev.emi.emi.api.EmiRegistry
+import net.bulbyvr.emireborn.RightAlignedText
 
 class EmiAssemblingMachineRecipe[R <: RebornRecipe](recipe: R) extends AbstractEnergyConsumingMachineRecipe[R], AbstractMachineRecipe[R](recipe, EmiAssemblingMachineRecipe.CATEGORY) {
   override def addWidgets(holder: WidgetHolder): Unit = 
     super.addWidgets(holder)
-    holder.add(SlotWidget(getInput(0), 55 - 9, 35 - 19).output(false))
-    holder.add(SlotWidget(getInput(1), 55 - 9, 55 - 19).output(false))
-    holder.add(SlotWidget(getOutput(0), 101 - 9, 45 - 19).output(true))
+    holder.add(SlotWidget(getInput(0), 55 - 9, 35 - 19))
+    holder.add(SlotWidget(getInput(1), 55 - 9, 55 - 19))
+    holder.add(SlotWidget(getOutput(0), 101 - 9, 45 - 19).recipeContext(this))
     holder.add(RebornProgressWidget(76 - 9, 48 - 19, time * 50, GuiBuilder.ProgressDirection.RIGHT))
 
-    holder.addText(TranslatableText("techreborn.jei.recipe.processing.time.3", DecimalFormat("###.##").format(time.toFloat / 20f)).asOrderedText(), getDisplayWidth() - 5, 5, 0xFF404040, false)
+    holder.add(RightAlignedText(TranslatableText("techreborn.jei.recipe.processing.time.3", DecimalFormat("###.##").format(time.toFloat / 20f)).asOrderedText(), getDisplayWidth() - 5, 5, 0xFF404040, false))
 
 }
 

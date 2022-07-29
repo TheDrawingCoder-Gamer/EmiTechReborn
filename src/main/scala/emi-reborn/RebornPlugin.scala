@@ -33,10 +33,12 @@ import net.bulbyvr.emireborn.machines.*
 import reborncore.common.crafting.RebornRecipe
 import dev.emi.emi.api.recipe.EmiRecipe
 import net.minecraft.recipe.RecipeType
+import net.bulbyvr.emireborn.fluidreplicator.EmiFluidReplicatorCategories
 object RebornPlugin extends EmiPlugin {
   
   override def register(registry: EmiRegistry) = 
     FluidGeneratorCategories.registerFluidGenerator(registry)
+    EmiFluidReplicatorCategories.register(registry)
     EmiAssemblingMachineRecipe.register(registry)
     EmiBlastFurnaceRecipe.register(registry)
     EmiDistillationTowerRecipe.register(registry)

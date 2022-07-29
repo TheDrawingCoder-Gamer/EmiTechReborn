@@ -13,7 +13,7 @@ import net.minecraft.text.TranslatableText
 import java.text.DecimalFormat
 import dev.emi.emi.api.EmiRegistry
 import net.bulbyvr.emireborn.RebornPlugin
-
+import net.bulbyvr.emireborn.addRightText
 object EmiImplosionCompressorRecipe {
   val CATEGORY = EmiRecipeCategory(ModRecipes.IMPLOSION_COMPRESSOR.name, EmiStack.of(Machine.IMPLOSION_COMPRESSOR))
   def register(registry: EmiRegistry): Unit = 
@@ -21,11 +21,11 @@ object EmiImplosionCompressorRecipe {
 }
 class EmiImplosionCompressorRecipe[R <: RebornRecipe](recipe: R) extends AbstractEnergyConsumingMachineRecipe[R], AbstractMachineRecipe[R](recipe, EmiImplosionCompressorRecipe.CATEGORY) {
   override def addWidgets(widgets: WidgetHolder): Unit = 
-    widgets.add(SlotWidget(getInput(0), 55 - 15, 35 - 19).output(false))
-    widgets.add(SlotWidget(getInput(1), 55 - 15, 55 - 19).output(false))
-    widgets.add(SlotWidget(getOutput(0), 97 - 15, 45 - 19).output(true).recipeContext(this))
-    widgets.add(SlotWidget(getOutput(1), 97 - 15, 45 - 19).output(true).recipeContext(this))
+    widgets.add(SlotWidget(getInput(0), 55 - 15, 35 - 19))
+    widgets.add(SlotWidget(getInput(1), 55 - 15, 55 - 19))
+    widgets.add(SlotWidget(getOutput(0), 97 - 15, 45 - 19).recipeContext(this))
+    widgets.add(SlotWidget(getOutput(1), 97 + 18 - 15, 45 - 19).recipeContext(this))
     widgets.add(RebornProgressWidget(76 - 15, 48 - 19, time * 50, GuiBuilder.ProgressDirection.RIGHT))
-    widgets.addText(TranslatableText("techreborn.jei.recipe.processing.time.3", DecimalFormat("###.##").format(time.toFloat / 20f)).asOrderedText(), getDisplayWidth() - 5,5, 0xFF404040, false)
+    widgets.addRightText(TranslatableText("techreborn.jei.recipe.processing.time.3", DecimalFormat("###.##").format(time.toFloat / 20f)).asOrderedText(), getDisplayWidth() - 5,5, 0xFF404040, false)
 
 }
